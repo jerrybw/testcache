@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>welcome</title>
+    <script type="application/javascript" src="js/jquery-3.2.1.min.js"></script>
+    <script type="application/javascript">
+        $(function () {
+            getAttributeFromSession("user");
+        })
+        
+        function getAttributeFromSession(paramName) {
+            $.ajax({
+                url:"session/"+paramName,
+                type:"get",
+                success:function (result) {
+                    if(result.code == "200"){
+                        $("#userName").html(result.user.name);
+                    }else {
+                        window.location.href = "gotoLogin";
+                    }
+                }
+            })
+        }
+    </script>
+</head>
+<body>
+    <h1>welcome,<span id="userName"></span></h1>
+</body>
+</html>

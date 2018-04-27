@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--这里的***.**指的是包名-->
+<mapper namespace="com.jerry.study.testcache.mapper.UserMapper">
+    <select id="listUsers" resultType="user">
+        SELECT id,tab_user.name,password,email FROM tab_user
+    </select>
+
+    <select id="getUserByNameAndPassword" resultType="user">
+        SELECT id,tab_user.name,password,email FROM tab_user where tab_user.name=#{name} and password = #{password}
+    </select>
+</mapper>

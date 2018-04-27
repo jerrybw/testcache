@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>welcome</title>
+    <script type="application/javascript" src="js/jquery-3.2.1.min.js"></script>
+    <script type="application/javascript">
+        $(function () {
+            $("#loginBtn").click(login)
+        })
+        function login() {
+            $.ajax({
+                url:"loginAct",
+                type:"post",
+                data:{
+                    "name":$("#name").val(),
+                    "password":$("#password").val()
+                },
+                success:function (result) {
+                    if(result.code == "200"){
+                        window.location.href = "index.html";
+                    }else if(result.code == "404") {
+                        alert("用户名或密码不正确！")
+                    }else {
+                        alert("系统发生错误，请联系管理员！")
+                    }
+                }
+            })
+            return false;
+        }
+    </script>
+</head>
+<body>
+    name:<input type="text" id="name">
+    password:<input type="password" id="password">
+    <button type="button" id="loginBtn">登陆</button>
+</body>
+</html>
